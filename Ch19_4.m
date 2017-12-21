@@ -30,3 +30,14 @@ if rcam == n
 elseif rcam < n
     disp('System is no controlled.')
 end
+
+% Ex19_14
+
+A = [0 1 -1; -6 -11 6; -6 -11 5];
+B = [0; 1; 1];
+CAM = ctrb(A, B);
+N = size(A);
+n = N(1);
+s = inv(CAM)
+P = [s(3,:); s(3,:)*A; s(3,:)*A*A]
+A1 = P * A * inv(P)
