@@ -14,3 +14,19 @@ if rcam == n
 elseif rcam < n
     disp('System is no controlled')
 end
+
+% Ex19_13
+
+A = [-1 1 0; 0 -1 0; 0 0 -2];
+B = [0; 4; 3];
+CO = [B A*B A*A*B];
+CAM = ctrb(A, B);
+N = size(A);
+n = N(1);
+rcam = rank(CAM);
+
+if rcam == n
+    disp('System is controlled.')
+elseif rcam < n
+    disp('System is no controlled.')
+end
