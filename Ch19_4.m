@@ -40,4 +40,42 @@ N = size(A);
 n = N(1);
 s = inv(CAM)
 P = [s(3,:); s(3,:)*A; s(3,:)*A*A]
-A1 = P * A * inv(P)
+A1 = P * A * inv(P);
+
+% Ex19_15
+
+A = [2 0 0; 0 2 0; 0 3 1];
+B = [1; 1; 0];
+C = [1 1 1; 1 2 3];
+D = [0; 0];
+
+CAM = ctrb(A, B);
+N = size(A);
+n = N(1);
+rcam = rank(CAM);
+
+if det(CAM) ~= 0
+    if n == rcam
+        disp('System is controlled.')
+    elseif n > rcam
+        disp('System is no controlled.')
+    end
+elseif  det(CAM) == 0
+    disp('System is no controlled.')
+end
+
+t1 = C*B;
+t2 = C*A*B;
+t3 = C*A*A*B;
+T = [t1 t2 t3 D];
+
+M = size(C);
+q = M(1);
+rcap = rank(T);
+
+if rcap == q
+    disp('System output is controlled.')
+elseif rcap ~= q
+    disp('System output is no controlled.')
+end
+
