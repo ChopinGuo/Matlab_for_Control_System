@@ -2,6 +2,8 @@
 
 F = [0.9048 0 0; 0.1338 0.4651 -0.2337; 0.0243 0.2237 0.9602];
 G = [0.0952; 0.0784; 0.0135];
+C = [0 0 2.5928];
+D = 0;
 A = F;
 B = G;
 CAM = ctrb(A,B)
@@ -14,6 +16,21 @@ if rcam == n
 elseif rcam < n
     disp('System is no controlled')
 end
+
+OB = obsv(F, C)
+OB1 = [C; C*F; C*F*F]
+OB2 = [C' F'*C' F'*F'*C']
+N = size(F);
+n = N(1);
+rob = rank(OB);
+
+if rob == n
+    disp('System is observable')
+elseif rob ~= n
+    disp('System is no observable')
+end
+
+% Ex19_16
 
 % Ex19_13
 
@@ -79,3 +96,29 @@ elseif rcap ~= q
     disp('System output is no controlled.')
 end
 
+% Ex19_17
+
+A = [-2 2 -1; 0 -2 0; 1 -4 0];
+B = [0 1; 0 0; 1 0];
+C = [1 0 0; 0 1 0];
+D = [0];
+
+CAM = ctrb(A, B);
+rcam = rank(CAM);
+N = size(A);
+n = N(1);
+
+if rcam == n
+    disp('System is controlled')
+elseif rcam < n
+    disp('System is no controlled')
+end
+
+ob = obsv(A, C);
+rob = rank(ob);
+
+if rob == n
+    disp('System is observable')
+elseif rob ~= n
+    disp('System is no observable')
+end
