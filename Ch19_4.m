@@ -122,3 +122,22 @@ if rob == n
 elseif rob ~= n
     disp('System is no observable')
 end
+
+% Ex19_18
+
+A = [-2 2 -1; 0 -2 0; 1 -4 0];
+B = [0; 1; 0];
+C = [0 1 1];
+D = [0];
+V = obsv(A, C);
+n = rank(V);
+V1 = inv(V);
+V10 = (V1)';
+V11 = (V10(3,:));
+VA = (V11)*(A)';
+VAA = (V11)*(A)'*(A)';
+P = [V11; VA; VAA];
+M = P';
+A1 = inv(M)*A*M;
+B1 = inv(M)*B;
+c1 = C*M;
