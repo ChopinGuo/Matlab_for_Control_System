@@ -88,7 +88,7 @@ A21 = A1(4, 1:3);
 
 syms h1 h2 h3 s
 H1 = [h3; h2; h1];
-eq = collect(det(s*E - (A11 - H1*A21)), s);
+eq = collect(det(s*E3 - (A11 - H1*A21)), s);
 
 eq1 = expand((s+3)*(s-(-2+1i))*(s-(-2-1i)));
 
